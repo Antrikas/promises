@@ -20,6 +20,7 @@
 //}
 
 //main()
+const statusRef = document.querySelector('.ststus')
 
 function getSubscriptionStatus () {
     return new Promise ((resolve, reject) => {
@@ -30,11 +31,12 @@ function getSubscriptionStatus () {
 }
 
 //1. Then
-getSubscriptionStatus().then (response => console.log (response))
+//getSubscriptionStatus().then (response => console.log (response))
 
 // 2. Async/Await
 async function main (){
-    console.log (await getSubscriptionStatus)
+   const status = console.log (await getSubscriptionStatus)
+   statusRef.innerHTML = status
 }
 
 main ();
