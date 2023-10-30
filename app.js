@@ -1,5 +1,6 @@
 //console.log(fetch("https://jsonplaceholder.typicode.com/users/1"))
-//const emailRef = document.querySelector(".email")
+const statusRef = document.querySelector(".status")
+const videoRef = document.querySelector (".video")
 //console.log(emailRef)
 
 //1.Then
@@ -20,23 +21,47 @@
 //}
 
 //main()
-const statusRef = document.querySelector('.ststus')
 
 function getSubscriptionStatus () {
-    return new Promise ((resolve, reject) => {
-        setTimout (() => {
-            resolve ("VIP")
-        }, 2000);
-    })
+    return new Promise ((resolve,reject) => {
+        setTimeout (() =>{
+            resolve ("FREE");
+   }, 2000);
+    });
 }
+
 
 //1. Then
 //getSubscriptionStatus().then (response => console.log (response))
 
 // 2. Async/Await
-async function main (){
-   const status = console.log (await getSubscriptionStatus)
-   statusRef.innerHTML = status
+
+
+
+function getVideo(subscriptionStatus) {
+return new Promise ((resolve, reject) => {
+if (subscriptionStatus === "VIP") {
+    resolve ("show video")
+}
+else if (subscriptionStatus == "FREE") {
+    resolve ("show trailer")
+}
+else {
+    reject ("no video")
+}
+})
 }
 
-main ();
+async function main (){
+    const status = await getSubscriptionStatus();
+    statusRef.innerHTML = status;
+    try {
+    console.log (await getVideo(status))
+ }
+ catch (e){
+console.log (e)
+videoRef.innerHTML = e;
+ }
+
+ }
+ main ();
